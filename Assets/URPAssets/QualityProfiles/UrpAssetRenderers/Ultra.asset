@@ -118,10 +118,9 @@ MonoBehaviour:
   - {fileID: -1149315786126524423}
   - {fileID: 6658285037319382801}
   - {fileID: -1707250210238247763}
-  - {fileID: 1693831470685054592}
   - {fileID: -6008349514481279013}
   - {fileID: 365542464873599899}
-  m_RendererFeatureMap: f9ff2dc161cf0cf01167b8def6fa665cadcc09acfaa04ee880668f8fbfb28117dbdff33ef30d9eac9b931c61efaa1205
+  m_RendererFeatureMap: f9ff2dc161cf0cf01167b8def6fa665cadcc09acfaa04ee8dbdff33ef30d9eac9b931c61efaa1205
   m_UseNativeRenderPass: 0
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
   shaders:

@@ -66,11 +66,10 @@ MonoBehaviour:
     probeSamplingDebugMesh: {fileID: -3555484719484374845, guid: 57d7c4c16e2765b47a4d2069b311bffe, type: 3}
     probeSamplingDebugTexture: {fileID: 2800000, guid: 24ec0e140fb444a44ab96ee80844e18e, type: 3}
   m_RendererFeatures:
-  - {fileID: 7741348548728255557}
   - {fileID: 5690412251388460145}
   - {fileID: -8626077256906875337}
   - {fileID: 2192291918255033519}
-  m_RendererFeatureMap: 45f46e597dcb6e6b713c8a25cb67f84e375efd1070044a88af0c8d67e2956c1e
+  m_RendererFeatureMap: 713c8a25cb67f84e375efd1070044a88af0c8d67e2956c1e
   m_UseNativeRenderPass: 0
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
   shaders:
