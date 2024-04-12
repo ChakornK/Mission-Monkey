@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 #if UNITY_EDITOR
     using UnityEditor;
@@ -23,7 +24,7 @@ public class EnemySight : MonoBehaviour
     [Space]
     [Tooltip("Enable to show detection gizmo for this AI. NOTE: The gizmo is slightly innaccurate, and is only an estimate of the detection range")]
     public bool enableDetectionGizmo = false;
-    public float gizmoTransperancy = 0.35f; 
+    public float gizmoTransparency = 0.35f; 
 
     [Space]
     [Tooltip("Enable to send a message to the console whenever the player is detected (Detection check occurs every 2.5 seconds)")]
@@ -53,7 +54,7 @@ public class EnemySight : MonoBehaviour
     // This method is written completely with the code from the article I linked at the start of the class, it's good stuff!
     private void OnDrawGizmos()
     {
-        gizmoTransperancy = Mathf.Clamp(gizmoTransperancy, 0, 1);
+        gizmoTransparency = Mathf.Clamp(gizmoTransparency, 0, 1);
         player = GameObject.FindGameObjectWithTag("Player");
         if (Selection.activeGameObject == null || (Selection.activeGameObject != gameObject && !transform.IsChildOf(Selection.activeGameObject.transform)))
         {
@@ -67,11 +68,7 @@ public class EnemySight : MonoBehaviour
                 if (currentDetectionPoint != null)
                 {
                     // Change color to red if the player is in sight
-                    if (IsPlayerVisible())
-                    {
-                        Gizmos.color = new Color(1, 0, 0, gizmoTransperancy);
-                    }
-                    else Gizmos.color = new Color(0, 1, 0, gizmoTransperancy);
+                    Gizmos.color = IsPlayerVisible() ? new Color(1, 0, 0, gizmoTransparency) : new Color(0, 1, 0, gizmoTransparency);
                     
                     Gizmos.matrix = currentDetectionPoint.transform.localToWorldMatrix;
                     Gizmos.DrawCube(new Vector3(0f, 0f, detectionDepth / 2f), new Vector3(detectionRadius, detectionRadius, detectionDepth));

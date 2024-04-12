@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Audio;
@@ -11,9 +12,11 @@ public class OptionsMenu : MonoBehaviour
     public TextMeshProUGUI volumeValueText, mouseSensitivityValueText, fieldOfViewValueText;
     public TMP_Dropdown qualityDropdown, aaModeDropdown, aaQualityDropdown, captionsDropdown;
     public Slider volumeSlider, fovSlider, mouseSensitivitySlider;
+    public SubtitlesUI subtitlesUI; 
     private PlayerCamera playerCamera;
     private UniversalAdditionalCameraData urpCamData;
     private UniversalRenderPipelineAsset urpAsset;
+    
 
     private void Awake()
     {
@@ -21,7 +24,6 @@ public class OptionsMenu : MonoBehaviour
         if (mainCamera == null) return;
         playerCamera = mainCamera.GetComponentInParent<PlayerCamera>();
         urpCamData = mainCamera.GetComponent<UniversalAdditionalCameraData>();
-
         SetOptionsFromPlayerPrefs();
     }
 
@@ -95,7 +97,10 @@ public class OptionsMenu : MonoBehaviour
 
     public void SetSubtitles(int subtitlesMode)
     {
-        // WIP
+        if (subtitlesUI != null)
+        {
+            subtitlesUI.subtitlesEnabled = Convert.ToBoolean(subtitlesMode);
+        }
         PlayerPrefs.SetInt("SubtitlesMode", subtitlesMode);
     }
 

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -24,7 +25,9 @@ namespace LemonStudios.CsExtensions
                     return i;
                 }
             }
-            return -1;  // Return -1 as an error for now
+            
+            Debug.LogWarning("List " + list + " only contains empty elements!");
+            throw new Exception();
         }
     }
 
@@ -62,6 +65,34 @@ namespace LemonStudios.CsExtensions
                 float loopFill = Mathf.Lerp(currentFill, targetFillAmount, Time.deltaTime * 0.2f);
                 targetGraphic.fillAmount = loopFill;
                 
+                yield return new WaitForEndOfFrame();
+            }
+        }
+        
+        // Kindly provided by ChakornK
+        public static IEnumerator SmoothAlphaUpdate(Image targetGraphic, float targetAlpha, float duration) 
+        {
+            Color graphicColor = targetGraphic.color;
+            float startTime = Time.deltaTime;
+            float startAlpha = graphicColor.a;
+            
+            while (Time.deltaTime < startTime + duration) 
+            {
+                float t = (Time.deltaTime - startTime) / duration;
+                targetGraphic.color = new Color(graphicColor.r, graphicColor.g, graphicColor.b, Mathf.Lerp(startAlpha, targetAlpha, t));
+                yield return new WaitForEndOfFrame();
+            }
+        }
+        public static IEnumerator SmoothAlphaUpdate(TextMeshProUGUI targetGraphic, float targetAlpha, float duration) 
+        {
+            Color graphicColor = targetGraphic.color;
+            float startTime = Time.deltaTime;
+            float startAlpha = graphicColor.a;
+            
+            while (Time.deltaTime < startTime + duration) 
+            {
+                float t = (Time.deltaTime - startTime) / duration;
+                targetGraphic.color = new Color(graphicColor.r, graphicColor.g, graphicColor.b, Mathf.Lerp(startAlpha, targetAlpha, t));
                 yield return new WaitForEndOfFrame();
             }
         }
