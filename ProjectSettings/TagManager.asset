@@ -23,6 +23,7 @@ TagManager:
   - DeathUI
   - AmmoCountUI
   - SubtitlesRoot
+  - InteractUI
   layers:
   - Default
   - TransparentFX

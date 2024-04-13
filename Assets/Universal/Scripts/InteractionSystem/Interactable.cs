@@ -4,6 +4,7 @@ using UnityEngine;
 public abstract class Interactable : MonoBehaviour
 {
     public bool enableDebugLogging;
+    public string interactText;
     
     public void TriggerInteract()
     {

@@ -2291,7 +2291,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 36b0075ac3e240e4dbba7d4752412278, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2348,8 +2348,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa77fac16b1d4dd291bf2ee39a540868, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogues: []
-  dialoguesTranscript: []
+  dialogues:
+  - {fileID: 8300000, guid: 9f99f83410684944ea90481d30854d5a, type: 3}
+  - {fileID: 8300000, guid: 0cecae0f175a6594f9eb72e6dd66d40d, type: 3}
+  dialoguesTranscript:
+  - Hello, this is a test of the dialogue system
+  - Again, this is a test of the dialogue system
   audioPlayLocation: {fileID: 1110299577}
   subtitlesUI: {fileID: 218299536}
 --- !u!114 &1243743146
@@ -2365,6 +2369,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enableDebugLogging: 1
+  interactText: Dialogue System Test
 --- !u!1 &1253084167
 GameObject:
   m_ObjectHideFlags: 0
@@ -3316,7 +3321,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4097101318872784413, guid: 66af6c6505c7be94eb7b8f131ac23606, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4097101318872784413, guid: 66af6c6505c7be94eb7b8f131ac23606, type: 3}
       propertyPath: m_TagString
@@ -3562,12 +3567,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3282993195727537299, guid: 71b8d9edacbff3e468acee1654e92af2, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4272317484832425783, guid: 71b8d9edacbff3e468acee1654e92af2, type: 3}
       propertyPath: mainCamera
       value: 
       objectReference: {fileID: 182054878}
+    - target: {fileID: 4272317484832425783, guid: 71b8d9edacbff3e468acee1654e92af2, type: 3}
+      propertyPath: subtitlesUI
+      value: 
+      objectReference: {fileID: 218299536}
     - target: {fileID: 4822815206730257362, guid: 71b8d9edacbff3e468acee1654e92af2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
@@ -3708,7 +3717,7 @@ GameObject:
   - component: {fileID: 1915428212}
   m_Layer: 0
   m_Name: InteractBox
-  m_TagString: Untagged
+  m_TagString: InteractUI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3929,7 +3938,7 @@ MonoBehaviour:
   reloadTime: 2.5
   maxAmmo: 0
   weaponDamage: 10
-  enableDebugMessages: 1
+  enableDebugMessages: 0
 --- !u!1 &2132572935
 GameObject:
   m_ObjectHideFlags: 0

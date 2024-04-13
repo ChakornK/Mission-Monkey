@@ -37,16 +37,6 @@ namespace LemonStudios.CsExtensions
         {
             return Time.timeScale == 0;
         }
-
-        public static IEnumerator LoadAsyncScene(int sceneBuildIndex)
-        {
-            AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneBuildIndex);
-
-            while (!asyncLoad.isDone)
-            {
-                yield return null;
-            }
-        }
     }
 
     public static class LemonUIUtils
@@ -68,31 +58,38 @@ namespace LemonStudios.CsExtensions
                 yield return new WaitForEndOfFrame();
             }
         }
+   
         
-        // Kindly provided by ChakornK
-        public static IEnumerator SmoothAlphaUpdate(Image targetGraphic, float targetAlpha, float duration) 
+        // Use Mathf.Lerp() to smoothly change the alpha of an image
+        public static IEnumerator SmoothAlphaUpdate(Image targetGraphic, float targetAlpha, float animationDuration)
         {
             Color graphicColor = targetGraphic.color;
-            float startTime = Time.deltaTime;
-            float startAlpha = graphicColor.a;
+            float originalAlpha = targetGraphic.color.a;
+            float currentTime = 0;
             
-            while (Time.deltaTime < startTime + duration) 
+            while (currentTime < animationDuration) 
             {
-                float t = (Time.deltaTime - startTime) / duration;
-                targetGraphic.color = new Color(graphicColor.r, graphicColor.g, graphicColor.b, Mathf.Lerp(startAlpha, targetAlpha, t));
+                currentTime += Time.deltaTime;
+                float newAlpha = Mathf.Lerp(originalAlpha, targetAlpha, currentTime / animationDuration);
+                targetGraphic.color = new Color(graphicColor.r, graphicColor.g, graphicColor.b, newAlpha);
+
                 yield return new WaitForEndOfFrame();
             }
         }
-        public static IEnumerator SmoothAlphaUpdate(TextMeshProUGUI targetGraphic, float targetAlpha, float duration) 
+        
+        
+        // Exact same method as above but for TextMeshProUGUI elements instead of an image
+        public static IEnumerator SmoothAlphaUpdate(TextMeshProUGUI targetGraphic, float targetAlpha, float animationDuration)
         {
             Color graphicColor = targetGraphic.color;
-            float startTime = Time.deltaTime;
-            float startAlpha = graphicColor.a;
+            float originalAlpha = targetGraphic.color.a;
+            float currentTime = 0;
             
-            while (Time.deltaTime < startTime + duration) 
+            while (currentTime < animationDuration) 
             {
-                float t = (Time.deltaTime - startTime) / duration;
-                targetGraphic.color = new Color(graphicColor.r, graphicColor.g, graphicColor.b, Mathf.Lerp(startAlpha, targetAlpha, t));
+                currentTime += Time.deltaTime;
+                float newAlpha = Mathf.Lerp(originalAlpha, targetAlpha, currentTime / animationDuration);
+                targetGraphic.color = new Color(graphicColor.r, graphicColor.g, graphicColor.b, newAlpha);
                 yield return new WaitForEndOfFrame();
             }
         }

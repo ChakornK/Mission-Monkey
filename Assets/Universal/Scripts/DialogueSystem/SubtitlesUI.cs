@@ -19,8 +19,8 @@ public class SubtitlesUI : MonoBehaviour
     public void ShowSubtitles(float showTime = 0.25f)
     {
         if (!subtitlesEnabled) return;
-        StartCoroutine(LemonUIUtils.SmoothAlphaUpdate(subtitlesUIImage, 255, showTime));
-        StartCoroutine(LemonUIUtils.SmoothAlphaUpdate(subtitlesText, 255, showTime));
+        StartCoroutine(LemonUIUtils.SmoothAlphaUpdate(subtitlesUIImage, 1, showTime));
+        StartCoroutine(LemonUIUtils.SmoothAlphaUpdate(subtitlesText, 1, showTime));
     }
 
     public void UpdateSubtitles(string updatedSubtitles, float updateTime = 0.25f)
@@ -30,7 +30,7 @@ public class SubtitlesUI : MonoBehaviour
         float splitUpdateTime = updateTime / 2;
         StartCoroutine(LemonUIUtils.SmoothAlphaUpdate(subtitlesText, 0, splitUpdateTime));
         subtitlesText.text = updatedSubtitles;
-        StartCoroutine(LemonUIUtils.SmoothAlphaUpdate(subtitlesText, 255, splitUpdateTime));
+        StartCoroutine(LemonUIUtils.SmoothAlphaUpdate(subtitlesText, 1, splitUpdateTime));
     }
     
     public void HideSubtitles(float hideTime = 0.25f)
