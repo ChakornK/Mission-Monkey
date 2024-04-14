@@ -1,5 +1,5 @@
 using System;
-using LemonStudios.CsExtensions;
+using LemonStudios.UI;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;

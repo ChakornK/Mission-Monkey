@@ -1,4 +1,4 @@
-using LemonStudios.CsExtensions;
+using LemonStudios.Game;
 using UnityEngine;
 
 public class WeaponEffectsManager : MonoBehaviour

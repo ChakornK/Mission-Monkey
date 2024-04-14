@@ -1,6 +1,6 @@
 using System;
 using System.Collections;
-using LemonStudios.CsExtensions;
+using LemonStudios.UI;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;

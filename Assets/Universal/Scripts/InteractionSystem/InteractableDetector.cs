@@ -1,4 +1,4 @@
-using LemonStudios.CsExtensions;
+using LemonStudios.UI;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -29,7 +29,6 @@ public class InteractableDetector : MonoBehaviour
     
     private void Update()
     {
-        Debug.Log(Time.time);
         interactionRaycast = new Ray(mainCamera.transform.position, mainCamera.transform.forward);
         
         if (Physics.Raycast(interactionRaycast, out RaycastHit hit, interactRayDistance, interactableMask))
