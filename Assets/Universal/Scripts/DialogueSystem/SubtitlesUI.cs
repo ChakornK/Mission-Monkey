@@ -1,4 +1,4 @@
-using LemonStudios.Generic;
+using System;
 using LemonStudios.UI;
 using UnityEngine;
 using TMPro;
@@ -40,7 +40,7 @@ public class SubtitlesUI : MonoBehaviour
     {
         StartCoroutine(LemonUIUtils.SmoothAlphaUpdate(subtitlesUIImage, 0, hideTime));
         StartCoroutine(LemonUIUtils.SmoothAlphaUpdate(subtitlesText, 0, hideTime));
-        subtitlesText.text = "null";
+        subtitlesText.text = String.Empty;
     }
 
 
@@ -68,6 +68,8 @@ public class SubtitlesUI : MonoBehaviour
         }
         
         string rebuiltString = characterName;
+        // Start index at 1 because index 0 is the character dialogue
+        // For loop exists in case that the dialogue line itself contains colons (which would split the string apart more)
         for (int i = 1; i < characterNameSplit.Length; i++)
         {
             rebuiltString += characterNameSplit[i];

@@ -1,3 +1,4 @@
+using LemonStudios.UI;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -13,9 +14,9 @@ public class UpdateHealthUI : MonoBehaviour
     private void Start()
     {
         // I might want to make these values be more flexible in the future, them being hardcoded is fine for now
-        highHealthColour = new Color(0.2863f, 0.8196f, 0.4235f);
-        midHealthColour = new Color(0.9451f, 0.7608f, 0.2196f);
-        lowHealthColour = new Color(0.7921f, 0.0862f, 0.1333f);
+        highHealthColour = LemonUIUtils.CreateNormalizedColor(71, 210, 107);
+        midHealthColour = LemonUIUtils.CreateNormalizedColor(241, 195, 57);
+        lowHealthColour = LemonUIUtils.CreateNormalizedColor(202, 22, 34);
 
         playerHealthImage = healthUI.GetComponent<Image>();
     }
@@ -42,7 +43,7 @@ public class UpdateHealthUI : MonoBehaviour
         healthText.text = currentPlayerHealth.ToString() + "/100";
 
         float currentFillAmount = playerHealthImage.fillAmount;
-        float fillAmount = Mathf.Lerp(currentFillAmount, currentPlayerHealth / 100f, Time.deltaTime * healthBarLerpSpeed); // Wtf is a lerp I gotta learn this
+        float fillAmount = Mathf.Lerp(currentFillAmount, currentPlayerHealth / 100f, Time.deltaTime * healthBarLerpSpeed);
         playerHealthImage.fillAmount = fillAmount;
     }
 }

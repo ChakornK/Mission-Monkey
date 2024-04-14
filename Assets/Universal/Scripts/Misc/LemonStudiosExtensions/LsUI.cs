@@ -15,6 +15,20 @@ namespace LemonStudios.UI
             menuToShow.SetActive(true);
         }
 
+        public static Color CreateNormalizedColor(int r, int g, int b, int a = 255)
+        {
+            float normalizedR = ColorNormalizer(r);
+            float normalizedG = ColorNormalizer(g);
+            float normalizedB = ColorNormalizer(b);
+            float normalizedA = ColorNormalizer(a);
+            return new Color(normalizedR, normalizedG, normalizedB, normalizedA);
+        }
+
+        public static float ColorNormalizer(int input)
+        {
+            return Mathf.Max(0, Mathf.Min(255, (float) input) / 255);
+        }
+        
         public static IEnumerator SmoothlyUpdateFillUI(Image targetGraphic, float targetFillAmount)
         {
             while (Math.Abs(targetGraphic.fillAmount - targetFillAmount) > 0.0001f)
