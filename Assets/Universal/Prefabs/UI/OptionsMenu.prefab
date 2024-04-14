@@ -1692,7 +1692,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3688087168700918344}
-  - component: {fileID: 2700364504211761227}
   m_Layer: 5
   m_Name: OptionsMenu
   m_TagString: Untagged
@@ -1722,19 +1721,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 1060, y: 492}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &2700364504211761227
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7201884942595366846}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59f9f41b84b73ef4a83bbade67012a11, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  uiToHide: {fileID: 7201884942595366846}
 --- !u!1 &7253451140806667670
 GameObject:
   m_ObjectHideFlags: 0
@@ -3649,7 +3635,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 231708395723927062, guid: 0029873f7a7b1484bb7026b99bbc7a40, type: 3}
       propertyPath: m_Interactable
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 231708395723927062, guid: 0029873f7a7b1484bb7026b99bbc7a40, type: 3}
       propertyPath: m_Colors.m_DisabledColor.a
@@ -3669,15 +3655,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 231708395723927062, guid: 0029873f7a7b1484bb7026b99bbc7a40, type: 3}
       propertyPath: m_Options.m_Options.Array.size
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 231708395723927062, guid: 0029873f7a7b1484bb7026b99bbc7a40, type: 3}
       propertyPath: m_Options.m_Options.Array.data[0].m_Text
-      value: None (WIP)
+      value: Off
       objectReference: {fileID: 0}
     - target: {fileID: 231708395723927062, guid: 0029873f7a7b1484bb7026b99bbc7a40, type: 3}
       propertyPath: m_Options.m_Options.Array.data[1].m_Text
-      value: Dialogue Only
+      value: On
       objectReference: {fileID: 0}
     - target: {fileID: 231708395723927062, guid: 0029873f7a7b1484bb7026b99bbc7a40, type: 3}
       propertyPath: m_Options.m_Options.Array.data[2].m_Text
@@ -3729,7 +3715,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 231708395723927062, guid: 0029873f7a7b1484bb7026b99bbc7a40, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 231708395723927062, guid: 0029873f7a7b1484bb7026b99bbc7a40, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 231708395723927062, guid: 0029873f7a7b1484bb7026b99bbc7a40, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
@@ -3737,15 +3727,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 231708395723927062, guid: 0029873f7a7b1484bb7026b99bbc7a40, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SetSubtitles
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 231708395723927062, guid: 0029873f7a7b1484bb7026b99bbc7a40, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: OptionsMenu, Assembly-CSharp
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 231708395723927062, guid: 0029873f7a7b1484bb7026b99bbc7a40, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 2364059854745330379, guid: 0029873f7a7b1484bb7026b99bbc7a40, type: 3}
       propertyPath: m_Name

@@ -13,18 +13,20 @@ public class DialogueContainer : MonoBehaviour
 
     public IEnumerator playDialogues()
     {
-        // Make the subtitles UI appear
-        if (subtitlesEnabled()) subtitlesUI.ShowSubtitles();
-        
         for (int i = 0; i < dialogues.Length; i++)
         {
             if (dialogues[i] != null)
             {
-                audioPlayLocation.PlayOneShot(dialogues[i]);
-                if (subtitlesEnabled())
+                if (subtitlesUI.areSubtitlesHidden())
+                {
+                    subtitlesUI.ShowSubtitles(dialoguesTranscript[i]);
+                }
+                else
                 {
                     subtitlesUI.UpdateSubtitles(dialoguesTranscript[i]);
                 }
+                
+                audioPlayLocation.PlayOneShot(dialogues[i]);
                 yield return new WaitForSeconds(dialogues[i].length);
             }
             else
@@ -33,8 +35,7 @@ public class DialogueContainer : MonoBehaviour
                 yield return new WaitForEndOfFrame();
             }
         }
-        
-        if(subtitlesEnabled()) subtitlesUI.HideSubtitles();
+        subtitlesUI.HideSubtitles();
     }
 
     private bool subtitlesEnabled()

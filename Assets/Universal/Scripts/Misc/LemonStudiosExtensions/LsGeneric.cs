@@ -25,5 +25,28 @@ namespace LemonStudios.Generic
             Debug.LogWarning("List " + list + " only contains empty elements!");
             throw new Exception();
         }
+
+        public static string ConvertToHex(int input)
+        {
+            return input.ToString("X");
+        }
+
+        public static string intArrToHex(int[] input, bool containSpaces = false)
+        {
+            string output = string.Empty;
+            for (int i = 0; i < input.Length; i++)
+            {
+                // i != 0 to prevent from there being a space at the very start of the string
+                if (containSpaces && i != 0)
+                {
+                    output += " " + input[i].ToString("X");
+                }
+                else
+                {
+                    output += input[i].ToString("X");
+                }
+            }
+            return output;
+        }
     }
 }
