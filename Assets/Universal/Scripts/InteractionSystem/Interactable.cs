@@ -14,6 +14,6 @@ public abstract class Interactable : MonoBehaviour
     protected virtual void Interact()
     {
         // Completely empty, as other scripts will be overriding this script to have their own functionality
-        if(enableDebugLogging) Debug.Log("Interacted with " + gameObject.name);
+        if(enableDebugLogging) Debug.Log($"Interacted with {gameObject.name}");
     }
 }

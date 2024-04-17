@@ -25,6 +25,7 @@ public class PauseMenuLogic : MonoBehaviour
         if(IsSubmenuActive())
         {
             // Debug.Log("Active Submenu Found");
+            // Instead of resuming the game, close the submenu instead
             GameObject currentActiveSubmenu = GameObject.FindGameObjectWithTag("Submenu");
             currentActiveSubmenu.SetActive(false);
         }

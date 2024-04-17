@@ -31,7 +31,7 @@ public class DialogueContainer : MonoBehaviour
             }
             else
             {
-                Debug.LogWarning(gameObject.name + " does not have a dialogue referenced at index " + i);
+                Debug.LogWarning($"{gameObject.name} does not have a dialogue referenced at index {i}");
                 yield return new WaitForEndOfFrame();
             }
         }

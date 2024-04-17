@@ -12,6 +12,12 @@ public class MenuNavigation : MonoBehaviour
         uiToShow.SetActive(true);
     }
 
+    public void SwitchOptionsMenuPage(GameObject uiToSwitchTo)
+    {
+        GameObject.FindGameObjectWithTag("OptionsMenuPage").SetActive(false);
+        uiToSwitchTo.SetActive(true);
+    }
+
     public void QuitGame()
     {
         Cursor.lockState = CursorLockMode.None;
@@ -30,4 +36,6 @@ public class MenuNavigation : MonoBehaviour
     {
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneToLoad, LoadSceneMode.Single);
     }
+    
+    
 }

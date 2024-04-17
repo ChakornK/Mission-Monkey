@@ -22,7 +22,7 @@ namespace LemonStudios.Generic
                 }
             }
             
-            Debug.LogWarning("List " + list + " only contains empty elements!");
+            Debug.LogWarning($"List {list} only contains empty elements!");
             throw new Exception();
         }
 

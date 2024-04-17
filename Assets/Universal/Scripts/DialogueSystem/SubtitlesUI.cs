@@ -1,4 +1,3 @@
-using System;
 using LemonStudios.UI;
 using UnityEngine;
 using TMPro;
@@ -40,7 +39,7 @@ public class SubtitlesUI : MonoBehaviour
     {
         StartCoroutine(LemonUIUtils.SmoothAlphaUpdate(subtitlesUIImage, 0, hideTime));
         StartCoroutine(LemonUIUtils.SmoothAlphaUpdate(subtitlesText, 0, hideTime));
-        subtitlesText.text = String.Empty;
+        subtitlesText.text = string.Empty;
     }
 
 
@@ -57,13 +56,13 @@ public class SubtitlesUI : MonoBehaviour
         switch (characterName)
         {
             case "Shob3r":
-                characterName = "<color=#7D18C9>" + characterName + ":</color>";
+                characterName = $"<color=#7D18C9>{characterName}:</color>";
                 break;
             case "Debug":
-                characterName = "<color=#47A9FF>" + characterName + ":</color>";
+                characterName = $"<color=#47A9FF>{characterName}:</color>";
                 break;
             case "Anti-Org Comms":
-                characterName = "<color=#9EF230>" + characterName + ":</color>";
+                characterName = $"<color=#9EF230>{characterName}:</color>";
                 break;
         }
         

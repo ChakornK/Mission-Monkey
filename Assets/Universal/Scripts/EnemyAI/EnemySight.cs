@@ -45,7 +45,7 @@ public class EnemySight : MonoBehaviour
         {
             if(IsPlayerVisible())
             {
-                Debug.Log(gameObject.name + " Has detected the player");
+                Debug.Log($"{gameObject.name} Has detected the player");
             }
             yield return new WaitForSeconds(2.5f);  // I should probably change the debug logging interval
         }

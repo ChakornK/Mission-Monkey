@@ -15,7 +15,7 @@ public class DiscordRichPresenceController : MonoBehaviour
         richPresence = new Discord.Discord(clientId, (UInt64)Discord.CreateFlags.NoRequireDiscord);
         startTime = DateTimeOffset.Now.ToUnixTimeMilliseconds();
         SetStatus();
-        largeImageText = "Playing on Version " + Application.version;
+        largeImageText = $"Playing on Version {Application.version}";
     }
 
     private void Update()
@@ -68,7 +68,7 @@ public class DiscordRichPresenceController : MonoBehaviour
                     // Debug.Log("Connected to Discord!");
                     return;
                 }
-                else Debug.LogWarning("Failed to connect to Discord!");
+                Debug.LogWarning("Rich presence failed to connect to Discord.");
             });
         }
         catch

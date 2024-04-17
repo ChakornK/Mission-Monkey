@@ -24,6 +24,7 @@ TagManager:
   - AmmoCountUI
   - SubtitlesRoot
   - InteractUI
+  - OptionsMenuPage
   layers:
   - Default
   - TransparentFX

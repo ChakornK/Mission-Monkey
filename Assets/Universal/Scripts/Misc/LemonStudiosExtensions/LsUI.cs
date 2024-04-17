@@ -24,7 +24,7 @@ namespace LemonStudios.UI
             return new Color(normalizedR, normalizedG, normalizedB, normalizedA);
         }
 
-        public static float ColorNormalizer(int input)
+        private static float ColorNormalizer(int input)
         {
             return Mathf.Max(0, Mathf.Min(255, (float) input) / 255);
         }
