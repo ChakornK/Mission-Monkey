@@ -45,4 +45,4 @@ Then, add the project to the Unity Hub. You are good to go from there!!
 To build from source, you must have all of the software mentioned in **Requirements to Develop** installed, as well as the ~5-10GB of storage required to have the project on your computer
 Follow the exact same steps provided on how to open the project in **Requirements to Develop**. Once you have the project open, navigate to the ["build settings" tab](https://cdn.discordapp.com/attachments/888136140564095007/1174972604847771739/image.png?ex=65698982&is=65571482&hm=216d691f61f592c5fe6c86d884b92a40366e25f26158b118bdf07426ac5f4c96&), and select your build options from there.
 
-#### ©2023 Lemon Studios
+#### ©2024 Lemon Studios
