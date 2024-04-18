@@ -10,9 +10,10 @@ public class OptionsMenu : MonoBehaviour
     public AudioMixer mainVolume;
     public Camera mainCamera;
     public TextMeshProUGUI volumeValueText, mouseSensitivityValueText, fieldOfViewValueText;
-    public TMP_Dropdown qualityDropdown, aaModeDropdown, aaQualityDropdown, captionsDropdown;
+    public TMP_Dropdown qualityDropdown, aaModeDropdown, vSyncDropdown, subtitlesDropdown, richPrsenceDropdown;
     public Slider volumeSlider, fovSlider, mouseSensitivitySlider;
-    public SubtitlesUI subtitlesUI; 
+    public SubtitlesUI subtitlesUI;
+    public DiscordRichPresenceController rpcController;
     private PlayerCamera playerCamera;
     private UniversalAdditionalCameraData urpCamData;
     private UniversalRenderPipelineAsset urpAsset;
@@ -21,6 +22,8 @@ public class OptionsMenu : MonoBehaviour
     private void Awake()
     {
         mainCamera = Camera.main;
+        
+        // PlayerCamera is the script the controls the players camera inputs. not to be confused with a camera component (I should probably rename this honestly)
         if (mainCamera == null) return;
         playerCamera = mainCamera.GetComponentInParent<PlayerCamera>();
         urpCamData = mainCamera.GetComponent<UniversalAdditionalCameraData>();
@@ -33,13 +36,13 @@ public class OptionsMenu : MonoBehaviour
         SetGraphicsQuality(qualityDropdown.value);
 
         aaModeDropdown.value = PlayerPrefs.GetInt("AntiAliasingMode");
-        SetAntiAliasingMode(aaModeDropdown.value);
+        SetAntiAliasing(aaModeDropdown.value);
 
-        aaQualityDropdown.value = PlayerPrefs.GetInt("AntiAliasingQuality");
-        SetAntiAliasingQuality(aaQualityDropdown.value);
-
-        captionsDropdown.value = PlayerPrefs.GetInt("SubtitlesMode");
-        SetSubtitles(captionsDropdown.value);
+        vSyncDropdown.value = PlayerPrefs.GetInt("VsyncMode");
+        SetVSync(vSyncDropdown.value);
+        
+        subtitlesDropdown.value = PlayerPrefs.GetInt("SubtitlesMode");
+        SetSubtitles(subtitlesDropdown.value);
 
         volumeSlider.value = PlayerPrefs.GetFloat("Volume");
         SetVolume(volumeSlider.value);
@@ -57,7 +60,7 @@ public class OptionsMenu : MonoBehaviour
         PlayerPrefs.SetInt("GraphicsQuality", newQualityLevel);
     }
 
-    public void SetAntiAliasingMode(int newAntiAliasingMode)
+    public void SetAntiAliasing(int newAntiAliasingMode)
     {
         switch (newAntiAliasingMode)
         {
@@ -78,23 +81,12 @@ public class OptionsMenu : MonoBehaviour
         PlayerPrefs.SetInt("AntiAliasingMode", newAntiAliasingMode);
     }
 
-    public void SetAntiAliasingQuality(int newAAQuality)
+    public void SetVSync(int vsyncMode)
     {
-        switch (newAAQuality)
-        {
-            case 0:
-                urpCamData.antialiasingQuality = AntialiasingQuality.Low;
-                break;
-            case 1:
-                urpCamData.antialiasingQuality = AntialiasingQuality.Medium;
-                break;
-            case 2:
-                urpCamData.antialiasingQuality = AntialiasingQuality.High;
-                break;
-        }
-        PlayerPrefs.SetInt("AntiAliasingQuality", newAAQuality);
+        QualitySettings.vSyncCount = vsyncMode;
+        PlayerPrefs.SetInt("VsyncMode", vsyncMode);
     }
-
+    
     public void SetSubtitles(int subtitlesMode)
     {
         if (subtitlesUI != null)
@@ -135,5 +127,16 @@ public class OptionsMenu : MonoBehaviour
         fieldOfViewValueText.text = roundedFovValue.ToString();
 
         PlayerPrefs.SetFloat("FieldOfView", newFovValue);
+    }
+
+    public void SetRPCActiveness(int activeness)
+    {
+        bool convertedActiveness = Convert.ToBoolean(activeness);
+        rpcController.enableRichPresence = convertedActiveness;
+
+        if (!convertedActiveness)
+        {
+            rpcController.DisposeRPC();
+        }
     }
 }

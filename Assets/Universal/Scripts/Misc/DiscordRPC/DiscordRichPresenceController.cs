@@ -3,13 +3,16 @@ using UnityEngine;
 
 public class DiscordRichPresenceController : MonoBehaviour
 {
+
+    public string largeImage, smallImage, state, smallImageText;
+    public bool enableRichPresence;
+    
     private Discord.Discord richPresence;
     private readonly long clientId = 1090862646993096745;
     private long startTime;
     private readonly string details = string.Empty;
     private string largeImageText;
-    public string largeImage, smallImage, state, smallImageText;
-
+    
     private void Start()
     {
         richPresence = new Discord.Discord(clientId, (UInt64)Discord.CreateFlags.NoRequireDiscord);
@@ -22,7 +25,10 @@ public class DiscordRichPresenceController : MonoBehaviour
     {
         try
         {
-            richPresence.RunCallbacks();
+            if (enableRichPresence)
+            {
+                richPresence.RunCallbacks();
+            }
         }
         catch
         {
@@ -36,7 +42,7 @@ public class DiscordRichPresenceController : MonoBehaviour
 
     private void OnApplicationQuit()
     {
-        richPresence.Dispose();
+        DisposeRPC();
     }
 
     private void SetStatus()
@@ -75,5 +81,10 @@ public class DiscordRichPresenceController : MonoBehaviour
         {
             gameObject.GetComponent<DiscordRichPresenceController>().enabled = false;
         }
+    }
+
+    public void DisposeRPC()
+    {
+        richPresence.Dispose();
     }
 }
