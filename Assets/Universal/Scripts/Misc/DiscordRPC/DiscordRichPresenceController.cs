@@ -8,7 +8,7 @@ public class DiscordRichPresenceController : MonoBehaviour
     public bool enableRichPresence;
     
     private Discord.Discord richPresence;
-    private readonly long clientId = 1090862646993096745;
+    private const long clientId = 1090862646993096745;
     private long startTime;
     private readonly string details = string.Empty;
     private string largeImageText;
