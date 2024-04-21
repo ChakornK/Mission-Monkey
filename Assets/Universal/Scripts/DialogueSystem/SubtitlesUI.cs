@@ -1,3 +1,4 @@
+using System;
 using LemonStudios.UI;
 using UnityEngine;
 using TMPro;
@@ -7,7 +8,7 @@ public class SubtitlesUI : MonoBehaviour
 {
     private Image subtitlesUIImage;
     private TextMeshProUGUI subtitlesText;
-    public bool subtitlesEnabled;
+    private bool subtitlesEnabled;
     
     private void Start()
     {
@@ -15,31 +16,43 @@ public class SubtitlesUI : MonoBehaviour
         subtitlesUIImage = subtitlesUI.GetComponent<Image>();
         subtitlesText = subtitlesUI.GetComponentInChildren<TextMeshProUGUI>();
         
-        // subtitlesEnabled = Convert.ToBoolean(PlayerPrefs.GetInt("SubtitlesMode"));
-        HideSubtitles();
+        subtitlesEnabled = Convert.ToBoolean(PlayerPrefs.GetInt("SubtitlesMode"));
+
+        // I HATE UNITY'S COLOR CLASS OH MY GOD
+        StartCoroutine(LemonUIUtils.SmoothAlphaUpdate(subtitlesUIImage, 0, 0.00001f));
+        StartCoroutine(LemonUIUtils.SmoothAlphaUpdate(subtitlesUIImage, 0, 0.00001f));
     }
 
     public void ShowSubtitles(string initialDialogue, float showTime = 0.15f)
     {
-        StartCoroutine(LemonUIUtils.SmoothAlphaUpdate(subtitlesUIImage, 1, showTime));
-        subtitlesText.text = formatDialogueText(initialDialogue);
-        StartCoroutine(LemonUIUtils.SmoothAlphaUpdate(subtitlesText, 1, showTime));
+        if (subtitlesEnabled)
+        {
+            StartCoroutine(LemonUIUtils.SmoothAlphaUpdate(subtitlesUIImage, 1, showTime));
+            subtitlesText.text = formatDialogueText(initialDialogue);
+            StartCoroutine(LemonUIUtils.SmoothAlphaUpdate(subtitlesText, 1, showTime));
+        }
     }
 
     public void UpdateSubtitles(string updatedSubtitles, float updateTime = 0.15f)
     {
-        // Fades out in half the time inputted, fades in within half the time inputted
-        float splitUpdateTime = updateTime / 2;
-        StartCoroutine(LemonUIUtils.SmoothAlphaUpdate(subtitlesText, 0, splitUpdateTime));
-        subtitlesText.text = formatDialogueText(updatedSubtitles);;
-        StartCoroutine(LemonUIUtils.SmoothAlphaUpdate(subtitlesText, 1, splitUpdateTime));
+        if (subtitlesEnabled)
+        {
+            // Fades out in half the time inputted, fades in within half the time inputted
+            float splitUpdateTime = updateTime / 2;
+            StartCoroutine(LemonUIUtils.SmoothAlphaUpdate(subtitlesText, 0, splitUpdateTime));
+            subtitlesText.text = formatDialogueText(updatedSubtitles);
+            StartCoroutine(LemonUIUtils.SmoothAlphaUpdate(subtitlesText, 1, splitUpdateTime));
+        }
     }
     
     public void HideSubtitles(float hideTime = 0.15f)
     {
-        StartCoroutine(LemonUIUtils.SmoothAlphaUpdate(subtitlesUIImage, 0, hideTime));
-        StartCoroutine(LemonUIUtils.SmoothAlphaUpdate(subtitlesText, 0, hideTime));
-        subtitlesText.text = string.Empty;
+        if (subtitlesEnabled)
+        {
+            StartCoroutine(LemonUIUtils.SmoothAlphaUpdate(subtitlesUIImage, 0, hideTime));
+            StartCoroutine(LemonUIUtils.SmoothAlphaUpdate(subtitlesText, 0, hideTime));
+            subtitlesText.text = string.Empty;
+        }
     }
 
 
@@ -47,7 +60,18 @@ public class SubtitlesUI : MonoBehaviour
     {
         return subtitlesUIImage.color.a == 0;
     }
+    
+    public bool getSubtitlesStatus()
+    {
+        return subtitlesEnabled;
+    }
 
+    public void setSubtitlesStatus(bool state)
+    {
+        subtitlesEnabled = state;
+    }
+    
+    // TODO: Make this method a separate class and make it better
     private string formatDialogueText(string input)
     {
         string[] characterNameSplit = input.Split(":");
@@ -73,7 +97,6 @@ public class SubtitlesUI : MonoBehaviour
         {
             rebuiltString += characterNameSplit[i];
         }
-        
         return rebuiltString;
     }
 }

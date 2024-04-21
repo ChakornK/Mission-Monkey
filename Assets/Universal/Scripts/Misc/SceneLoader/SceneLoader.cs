@@ -4,8 +4,9 @@ using UnityEngine.SceneManagement;
 
 public class SceneLoader : MonoBehaviour
 {
-    // UI cannot just start coroutines by themselves 😔😔😔 more bloat to the code I guess (I'm probably being stupid right now)
+    // TODO: integrate this with GameUtils namespace (again, i'm an absolutely atrociously lazy programmer)
     
+    // UI cannot just start coroutines by themselves 😔😔😔 more bloat to the code I guess (I'm probably being stupid right now)
     public void UISceneLoadByName(string sceneName)
     {
         StartCoroutine(LoadSceneByName(sceneName));

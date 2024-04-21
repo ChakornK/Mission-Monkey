@@ -1,6 +1,7 @@
 using LemonStudios.UI;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class InteractableDetector : MonoBehaviour
@@ -11,19 +12,21 @@ public class InteractableDetector : MonoBehaviour
     private PlayerInput playerInput;
     private Ray interactionRaycast;
     
-    public LayerMask interactableMask;
+    private LayerMask interactableMask;
     public float interactRayDistance = 2.5f;
 
     private void Start()
     {
         var interactionUIBase = GameObject.FindGameObjectWithTag("InteractUI");
+        // Bit-shifting, my favorite!
+        interactableMask = 1 << 6;
         
         mainCamera = GetComponentInChildren<Camera>();
         interactionUI = interactionUIBase.GetComponent<Image>();
         interactText = interactionUIBase.GetComponentInChildren<TextMeshProUGUI>();
         
         playerInput = new PlayerInput();
-        playerInput.OnFoot.Interact.performed += ctx => FindInteractables();
+        playerInput.OnFoot.Interact.performed += FindInteractables;
         playerInput.Enable();
     }
     
@@ -49,7 +52,7 @@ public class InteractableDetector : MonoBehaviour
         }
     }
 
-    private void FindInteractables()
+    private void FindInteractables(InputAction.CallbackContext ctx)
     {
         if (Physics.Raycast(interactionRaycast, out RaycastHit hit, interactRayDistance, interactableMask))
         {

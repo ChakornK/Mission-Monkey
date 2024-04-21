@@ -21,16 +21,21 @@ namespace LemonStudios.UI
             float normalizedG = ColorNormalizer(g);
             float normalizedB = ColorNormalizer(b);
             float normalizedA = ColorNormalizer(a);
+            
+            // Using the new "normalized" values, return a Color class using unity's (frankly stupid) implementation of the RGB colour system
             return new Color(normalizedR, normalizedG, normalizedB, normalizedA);
         }
 
         private static float ColorNormalizer(int input)
         {
+            // Helper method required for CreateNormalizedColor()
+            // picks the larger number, 0, or input / 255
             return Mathf.Max(0, Mathf.Min(255, (float) input) / 255);
         }
         
         public static IEnumerator SmoothlyUpdateFillUI(Image targetGraphic, float targetFillAmount)
         {
+            // Use Lerp to smoothly update the fill amount of an image over the course of a specified time 
             while (Math.Abs(targetGraphic.fillAmount - targetFillAmount) > 0.0001f)
             {
                 float currentFill = targetGraphic.fillAmount;

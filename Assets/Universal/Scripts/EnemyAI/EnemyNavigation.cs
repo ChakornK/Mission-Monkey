@@ -9,9 +9,9 @@ public class EnemyNavigation : MonoBehaviour
     private EnemySight enemySight;
     private NavMeshAgent agent;
     
-    private int currentTarget = 0;
+    private int currentTarget;
     public float navigationUpdateFrequency = 0.15f;
-    private bool seenPlayer = false;
+    private bool seenPlayer;
 
     private void Start() 
     {
@@ -32,6 +32,7 @@ public class EnemyNavigation : MonoBehaviour
     {
         while(true)
         {
+            // All enemies will just be able to know the player's location after seeing them once (because I am a lazy programmer who doesn't deserve any praise)
             if(seenPlayer)
             {
                 GameObject player = GameObject.FindGameObjectWithTag("Player");
@@ -64,11 +65,8 @@ public class EnemyNavigation : MonoBehaviour
     
     private int GetNextPatrolPointIndex(Transform[] patrolPointArray, int currentElement)
     {
-        if(currentTarget + 1 > patrolPointArray.Length - 1)
-        {
-            return 0;   // Start back at beginning of array
-        }
-        else return currentElement + 1;
+        // I somehow learned how ternary expressions work by writing this one line
+        return currentTarget + 1 > patrolPointArray.Length ? 0 : currentElement + 1;
     }
 
     private Vector3 GetCurrentTargetPosition()

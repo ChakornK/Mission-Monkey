@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
+// Right now, none of the methods here are used, but it's useful to have in case I ever DO need them in the future!
+// If not, I can just distribute this as a sparete library since this namespace is just C# extensions
 namespace LemonStudios.Generic
 {
     public static class LemonGenericUtils

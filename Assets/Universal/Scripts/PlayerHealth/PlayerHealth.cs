@@ -31,9 +31,9 @@ public class PlayerHealth : MonoBehaviour
         health -= damageDealt;
     }
 
-    public void DamagePlayerRandom(int baseDamage, float minimumDamageMultiplier, float maximumDamageMultiplier)
+    public void DamagePlayerRandom(int minimumDamage, int maximumDamage)
     {
-        int randomizedDamage = Mathf.RoundToInt(Random.Range(minimumDamageMultiplier, maximumDamageMultiplier));
+        int randomizedDamage = Random.Range(minimumDamage, maximumDamage);
         health -= randomizedDamage;
     }
 

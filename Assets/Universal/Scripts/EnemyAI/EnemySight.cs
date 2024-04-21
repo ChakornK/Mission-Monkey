@@ -114,7 +114,7 @@ public class EnemySight : MonoBehaviour
     {
         foreach(GameObject currentDetectionPoint in detectionPoints)
         {
-            if (detectionPoints != null)
+            if (currentDetectionPoint != null)
             {
                 if (Physics.SphereCast(currentDetectionPoint.transform.position, detectionRadius, currentDetectionPoint.transform.forward, out RaycastHit hitInfo, detectionDepth, detectLayer))
                 {

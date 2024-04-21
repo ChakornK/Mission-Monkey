@@ -43,7 +43,7 @@ public class PauseMenuLogic : MonoBehaviour
         }
     }
 
-    public void PauseGame()
+    private void PauseGame()
     {
         Time.timeScale = 0;
         LemonUIUtils.SwitchMenus(gameUI, pauseUI);

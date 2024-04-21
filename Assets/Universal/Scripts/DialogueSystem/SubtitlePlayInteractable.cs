@@ -1,3 +1,7 @@
+using UnityEngine;
+
+// As mentioned in DialogueContainer, a DialogueContainer component must be present in a script that needs to use it (crazy, I know)
+[RequireComponent((typeof(DialogueContainer)))]
 public class SubtitlePlayInteractable : Interactable
 {
     private DialogueContainer dialogueContainer;

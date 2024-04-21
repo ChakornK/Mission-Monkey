@@ -4,6 +4,7 @@ public class OnSceneLoad : SaveDataBase
 {
     private void Start()
     {
+        // Move the player to the correct position if the game can tell that the scene get loaded by SaveData
         Time.timeScale = 1;
         if(IsLastLoadFromSaveData)
         {

@@ -17,7 +17,6 @@ public class DiscordRichPresenceController : MonoBehaviour
     {
         richPresence = new Discord.Discord(clientId, (UInt64)Discord.CreateFlags.NoRequireDiscord);
         startTime = DateTimeOffset.Now.ToUnixTimeMilliseconds();
-        SetStatus();
         largeImageText = $"Playing on Version {Application.version}";
     }
 
@@ -28,21 +27,13 @@ public class DiscordRichPresenceController : MonoBehaviour
             if (enableRichPresence)
             {
                 richPresence.RunCallbacks();
+                SetStatus();
             }
         }
         catch
         {
             gameObject.GetComponent<DiscordRichPresenceController>().enabled = false;
         }
-    }
-    private void LateUpdate()
-    {
-        SetStatus();
-    }
-
-    private void OnApplicationQuit()
-    {
-        DisposeRPC();
     }
 
     private void SetStatus()
@@ -86,5 +77,10 @@ public class DiscordRichPresenceController : MonoBehaviour
     public void DisposeRPC()
     {
         richPresence.Dispose();
+    }
+    
+    private void OnApplicationQuit()
+    {
+        DisposeRPC();
     }
 }

@@ -42,7 +42,6 @@ git clone https://github.com/Lemons-Studios/Mission-Monkey.git
 Then, add the project to the Unity Hub. You are good to go from there!!
 
 ## 🏗️ Build From Source
-To build from source, you must have all of the software mentioned in **Requirements to Develop** installed, as well as the ~5-10GB of storage required to have the project on your computer
-Follow the exact same steps provided on how to open the project in **Requirements to Develop**. Once you have the project open, navigate to the ["build settings" tab](https://cdn.discordapp.com/attachments/888136140564095007/1174972604847771739/image.png?ex=65698982&is=65571482&hm=216d691f61f592c5fe6c86d884b92a40366e25f26158b118bdf07426ac5f4c96&), and select your build options from there.
+To Build from source, simply download the project and navigate to the **Build Settings** tab (Make sure to meet all the requirements in **Requirements to Develop**). Customize the build and click on the build button, and that's it!
 
 #### ©2024 Lemon Studios

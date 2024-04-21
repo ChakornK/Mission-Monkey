@@ -91,7 +91,7 @@ public class OptionsMenu : MonoBehaviour
     {
         if (subtitlesUI != null)
         {
-            subtitlesUI.subtitlesEnabled = Convert.ToBoolean(subtitlesMode);
+            subtitlesUI.setSubtitlesStatus(Convert.ToBoolean(subtitlesMode));
         }
         PlayerPrefs.SetInt("SubtitlesMode", subtitlesMode);
     }
