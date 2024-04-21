@@ -48,6 +48,7 @@ public class WriteSave : SaveDataBase
 
 internal class SaveDataTemplate
 {
+    // This is the way that unity recommends that JSON data should be generated, so I'll just roll with it. Still a little more messy than what I would like
     public Vector3 playerPosition;
     public string savedSceneName;
     public string lastSaveDate;
@@ -70,6 +71,7 @@ internal class SaveDataTemplate
     }
 
     // ReSharper disable twice MemberCanBePrivate.Global
+    // These methods cannot be made private because for some reason the json generator just won't accept any values from the methods when it is, absolutely no clue why
     public string GetFormattedCurrentTime()
     {
         DateTime unformattedSaveTime = DateTime.Now;

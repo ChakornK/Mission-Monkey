@@ -15,8 +15,7 @@ public class AmmoAndReload : MonoBehaviour
     
     private int maxAmmo;
     private int ammoInMag;
-
-
+    
     private void Start()
     {
         // Attempt to find a Weapon component (Since all weapons inherit from WeaponBase, look for that component) and a weapon effects component

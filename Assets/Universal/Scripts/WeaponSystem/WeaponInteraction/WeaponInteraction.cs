@@ -2,10 +2,10 @@ using UnityEngine;
 
 public abstract class WeaponInteraction : MonoBehaviour
 {
-    public bool enableDebugMessages = false;
+    public bool enableDebugMessages;
     protected virtual void OnWeaponInteract()
     {
-        // NOTHING
+        if(enableDebugMessages) Debug.Log($"hit a weapon interactable: {gameObject.name}!");
     }
 
     public void PerformWeaponInteraction()

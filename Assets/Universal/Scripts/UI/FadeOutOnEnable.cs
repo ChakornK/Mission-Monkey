@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using LemonStudios.UI;
 using TMPro;
@@ -19,6 +18,7 @@ public class FadeOutOnEnable : MonoBehaviour
 
     private void OnEnable()
     {
+        // Fade out the moment the GameObject is enabled
         StartCoroutine(waitUntilFadeOut());
     }
 

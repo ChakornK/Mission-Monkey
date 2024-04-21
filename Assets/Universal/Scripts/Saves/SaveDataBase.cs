@@ -5,7 +5,7 @@ using UnityEngine;
 public class SaveDataBase : MonoBehaviour
 {
     private string filePath;
-    protected static bool IsLastLoadFromSaveData;
+    protected static bool lastLoadFromSaveData;
     
     private void Awake()
     {
@@ -21,18 +21,17 @@ public class SaveDataBase : MonoBehaviour
     {
         return File.ReadAllText(filePath);
     }
-
-
+    
     protected T GetSaveDataInfoFromTag<T>(string tagName)
     {
         if (IsTagInSaveData(tagName))
         {
             JObject saveData = ParseSaveDataFile();
             // Select the json token from the save file
-            JToken? token = saveData.SelectToken(tagName);
+            JToken token = saveData.SelectToken(tagName);
             if (token != null && token.Type != JTokenType.Null)
             {
-                T? t = token.Value<T>();
+                T t = token.Value<T>();
                 return t;
             }
         }
@@ -51,7 +50,7 @@ public class SaveDataBase : MonoBehaviour
             float savePosZ = saveData.SelectToken("playerPosition.z").Value<float>();
             return new Vector3(savePosX, savePosY, savePosZ);
         }
-        else return Vector3.zero;   // I should probably have better errors in here in the future
+        return Vector3.zero;   // I should probably have better errors in here in the future
     }
 
     private bool IsTagInSaveData(string tagName)
@@ -61,19 +60,15 @@ public class SaveDataBase : MonoBehaviour
             string data = ReadSaveDataFile();
             return data.Contains(tagName);
         }
-        else return false;
+        return false;
     }
 
-    public bool DoesSaveDataFileExist()
+    protected bool DoesSaveDataFileExist()
     {
-        if (File.Exists(GetSavePath()))
-        {
-            return true;
-        }
-        else return false;
+        return File.Exists(GetSavePath());
     }
 
-    public string GetSavePath()
+    protected string GetSavePath()
     {
         return filePath;
     }

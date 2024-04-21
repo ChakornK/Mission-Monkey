@@ -15,7 +15,7 @@ public class SpherecastAttack : WeaponBase
     {
         base.Attack(context);
 
-        // My approach to AoE attacks is similar to what is implemented in the EnemySight script.
+        // My approach to Area-Of-Effect attacks is similar to what is implemented in the EnemySight script.
         // First, Shoot a raycast towards the target the player is looking at. Then, spawn a SphereCast at that exact point
         // If an enemy or a WeaponInteractable is detected in the SphereCast, damage them/perform the weapon interaction
         // REGARDLESS of weather they are seen or not (I cannot bother to add in wall detection right now, this shall do for a few months before I expand on it)
@@ -42,7 +42,7 @@ public class SpherecastAttack : WeaponBase
                     hitGameObjects++;
                 }
             }
-            if(enableDebugMessages) Debug.Log("Hit " + hitGameObjects + " with AoE Attack");
+            if(enableDebugMessages) Debug.Log("Hit " + hitGameObjects + " with Area-Of-Effect Attack");
         }
     }
 }

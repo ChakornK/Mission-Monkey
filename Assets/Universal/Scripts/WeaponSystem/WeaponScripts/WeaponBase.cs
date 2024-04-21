@@ -37,8 +37,7 @@ public abstract class WeaponBase : MonoBehaviour
             if (Time.time - primaryLastPerformed < primaryCooldown)
             {
                 // Only able to perform if the cooldown is over
-                if (enableDebugMessages)
-                    Debug.Log("Remaining time until next use of attack: " + (Time.time + secondaryLastPerformed));
+                if (enableDebugMessages) Debug.Log("Remaining time until next use of attack: " + (Time.time + secondaryLastPerformed));
                 return;
             }
 

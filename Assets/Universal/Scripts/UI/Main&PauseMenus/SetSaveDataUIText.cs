@@ -18,7 +18,7 @@ public class SetSaveDataUIText : SaveDataBase
         return GetSaveDataInfoFromTag<int>("savedSceneBuildNumber") switch
         {
             0 => "Main Menu (how)",
-            1 => "Chapter 1",
+            1 => "0.4 Demo",
             2 => "Chapter 1: Interlude",
             3 => "Chapter 2",
             _ => string.Empty

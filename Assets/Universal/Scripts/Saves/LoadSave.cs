@@ -1,14 +1,13 @@
-using UnityEngine;
-using UnityEngine.SceneManagement;
+using LemonStudios.Game;
 
 public class LoadSave : SaveDataBase
 {
     public void LoadSaveData()
     {
-        int lastSavedSceneBuildIndex = base.GetSaveDataInfoFromTag<int>("savedSceneBuildNumber");
+        int lastSavedSceneBuildIndex = GetSaveDataInfoFromTag<int>("savedSceneBuildNumber");
 
         // Load the saved scene
-        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(lastSavedSceneBuildIndex, LoadSceneMode.Single);
-        SaveDataBase.IsLastLoadFromSaveData = true;
+        StartCoroutine(LemonGameUtils.LoadSceneByBuildNumber(lastSavedSceneBuildIndex));
+        lastLoadFromSaveData = true;
     }
 }
