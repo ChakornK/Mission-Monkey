@@ -5,7 +5,7 @@ public class PlayerDeathController : MonoBehaviour
     public LoadSave loadSave;
     public PauseMenuLogic pauseGame;
     public GameObject mainUI, deathUI;
-
+    
     private void Start()
     {
         mainUI = GameObject.FindGameObjectWithTag("GameUI");
@@ -19,6 +19,8 @@ public class PlayerDeathController : MonoBehaviour
         pauseGame.enabled = false;
         Time.timeScale = 0;
         Cursor.lockState = CursorLockMode.None;
+        
+        // Stop the playing of any AudioClips that are playing
         deathUI.SetActive(true);
     }
 

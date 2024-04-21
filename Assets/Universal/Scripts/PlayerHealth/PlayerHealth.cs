@@ -1,16 +1,17 @@
+using System;
 using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
+    private UpdateHealthUI healthUI;
     private int health = 100;
-    private int maxHealth; 
     
     [HideInInspector]
     public bool enforceMaxHealth = true;
 
     private void Start()
     {
-        maxHealth = health;
+        healthUI = GetComponent<UpdateHealthUI>();
     }
 
     private void Update()
@@ -25,35 +26,45 @@ public class PlayerHealth : MonoBehaviour
             GetComponent<PlayerDeathController>().OnPlayerDeath();
         }
     }
-
-    public void DamagePlayer(int damageDealt)
+    
+    public void ModifyPlayerHealth(int modifier, bool damagePlayer = true)
     {
-        health -= damageDealt;
+        switch (damagePlayer)
+        {
+            case true:
+                DamagePlayer(modifier);
+                break;
+            case false:
+                HealPlayer(modifier);
+                break;
+        }
     }
 
-    public void DamagePlayerRandom(int minimumDamage, int maximumDamage)
+    private void DamagePlayer(int damageAmount)
     {
-        int randomizedDamage = Random.Range(minimumDamage, maximumDamage);
-        health -= randomizedDamage;
+        if (health - damageAmount <= 0)
+        {
+            health = 0; 
+            GetComponent<PlayerDeathController>().OnPlayerDeath();
+        }
+        else
+        {
+            health -= damageAmount;
+        }
+        
+        healthUI.OnHealthModification();
     }
 
-    public void HealPlayer(int healthHealed)
+    private void HealPlayer(int healAmount)
     {
-        health += healthHealed;
+        if (health + healAmount >= 100) health = 100;
+        else health += healAmount;
     }
+
 
     public int GetHealth()
     {
         return health;
     }
-
-    public int GetMaxHealth()
-    {
-        return maxHealth;
-    }
-
-    public void SetHealth(int newHealth)
-    {
-        health = newHealth;
-    }
+    
 }

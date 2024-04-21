@@ -3,6 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.Rendering.Universal;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class OptionsMenu : MonoBehaviour
@@ -10,7 +11,8 @@ public class OptionsMenu : MonoBehaviour
     public AudioMixer mainVolume;
     public Camera mainCamera;
     public TextMeshProUGUI volumeValueText, mouseSensitivityValueText, fieldOfViewValueText;
-    public TMP_Dropdown qualityDropdown, aaModeDropdown, vSyncDropdown, subtitlesDropdown, richPrsenceDropdown;
+    public TMP_Dropdown qualityDropdown, aaModeDropdown, vSyncDropdown, subtitlesDropdown;
+    public TMP_Dropdown richPresenceDropdown;
     public Slider volumeSlider, fovSlider, mouseSensitivitySlider;
     public SubtitlesUI subtitlesUI;
     public DiscordRichPresenceController rpcController;
@@ -32,6 +34,8 @@ public class OptionsMenu : MonoBehaviour
 
     private void SetOptionsFromPlayerPrefs()
     {
+        // Set the values of each dropdown/slider to their saved value, then call the method to update all the options using the values of said dropdowns 
+        
         qualityDropdown.value = PlayerPrefs.GetInt("GraphicsQuality");
         SetGraphicsQuality(qualityDropdown.value);
 
@@ -52,6 +56,9 @@ public class OptionsMenu : MonoBehaviour
 
         mouseSensitivitySlider.value = PlayerPrefs.GetFloat("MouseSensitivity");
         SetMouseSensitivity(mouseSensitivitySlider.value);
+
+        richPresenceDropdown.value = PlayerPrefs.GetInt("DiscordIntegration");
+        SetRPCActiveness(richPresenceDropdown.value);
     }
 
     public void SetGraphicsQuality(int newQualityLevel)
@@ -77,7 +84,7 @@ public class OptionsMenu : MonoBehaviour
                 urpCamData.antialiasing = AntialiasingMode.SubpixelMorphologicalAntiAliasing;
                 break;
         }
-
+        
         PlayerPrefs.SetInt("AntiAliasingMode", newAntiAliasingMode);
     }
 
@@ -93,16 +100,17 @@ public class OptionsMenu : MonoBehaviour
         {
             subtitlesUI.setSubtitlesStatus(Convert.ToBoolean(subtitlesMode));
         }
+        
         PlayerPrefs.SetInt("SubtitlesMode", subtitlesMode);
     }
 
     public void SetVolume(float volume)
     {
         mainVolume.SetFloat("Volume", Mathf.Log10(volume) * 20);
-        PlayerPrefs.SetFloat("Volume", volume);
-
         int textDisplayVolume = Mathf.RoundToInt(volume * 100);
         volumeValueText.text = textDisplayVolume + "%";
+        
+        PlayerPrefs.SetFloat("Volume", volume);
     }
 
     public void SetMouseSensitivity(float newMouseSensitivity)
@@ -131,12 +139,15 @@ public class OptionsMenu : MonoBehaviour
 
     public void SetRPCActiveness(int activeness)
     {
-        bool convertedActiveness = Convert.ToBoolean(activeness);
+        // Inverse the activeness conversion because "on" is in slot 0 and 0 is false on booleans and yap yap yap yap yap
+        bool convertedActiveness = !Convert.ToBoolean(activeness);
         rpcController.enableRichPresence = convertedActiveness;
 
         if (!convertedActiveness)
         {
             rpcController.DisposeRPC();
         }
+        
+        PlayerPrefs.SetInt("DiscordIntegration", activeness);
     }
 }

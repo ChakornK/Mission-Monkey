@@ -14,12 +14,12 @@ public class EnemyAttack : MonoBehaviour
     private NavMeshAgent agent;
     private EnemyNavigation enemyNavigation;
     private EnemySight enemySight;
+    
     public int minDamage, maxDamage;
     public float timeBetweenAttacks, shootingDistance;
     
     [Tooltip("If set to false, enemy will attempt to attack the player with a raycast/direct hit attack")]
     public bool enableAreaOfEffectAttacks;
-    
     
     public bool enableDebug;
 
@@ -79,7 +79,8 @@ public class EnemyAttack : MonoBehaviour
         if(Physics.Raycast(raycastOrigin, directionToTarget, out RaycastHit hit))
         { 
             // The player GameObject SHOULD have PlayerHealth on it no matter what. If it doesn't then that's not a good thing
-            hit.collider.GetComponent<PlayerHealth>().DamagePlayerRandom(minDamage, maxDamage);
+            int randomizedDamageAmount = Random.Range(minDamage, maxDamage);
+            hit.collider.GetComponent<PlayerHealth>().ModifyPlayerHealth(randomizedDamageAmount);
         }
     }
 

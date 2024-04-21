@@ -5377,7 +5377,6 @@ GameObject:
   m_Component:
   - component: {fileID: 9082542411977592408}
   - component: {fileID: 8244471989793036234}
-  - component: {fileID: 6596883697141365026}
   - component: {fileID: 1734894053017598893}
   m_Layer: 0
   m_Name: PauseMenu
@@ -5422,33 +5421,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 303403c6c60223946905b5dd2ac9416d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &6596883697141365026
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2689663858556902163}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f2752deccd3ee9741b28bf9ef426d85c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mainVolume: {fileID: 24100000, guid: 3a5200ccdd38f3e4f95028236fab6f11, type: 2}
-  mainCamera: {fileID: 0}
-  volumeValueText: {fileID: 3293226098025869055}
-  mouseSensitivityValueText: {fileID: 419466800495507962}
-  fieldOfViewValueText: {fileID: 128843546031436479}
-  qualityDropdown: {fileID: 1224717973786610408}
-  aaModeDropdown: {fileID: 1615954173316398502}
-  vSyncDropdown: {fileID: 4686372136026058861}
-  subtitlesDropdown: {fileID: 3299232143478731148}
-  richPrsenceDropdown: {fileID: 3746662505756389468}
-  volumeSlider: {fileID: 4374890578801779561}
-  fovSlider: {fileID: 8809599962731013609}
-  mouseSensitivitySlider: {fileID: 7264433626509271308}
-  subtitlesUI: {fileID: 0}
-  rpcController: {fileID: 0}
 --- !u!114 &1734894053017598893
 MonoBehaviour:
   m_ObjectHideFlags: 0

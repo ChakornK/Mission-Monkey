@@ -5,7 +5,6 @@ public class Glock : RaycastAttack
 {
     protected override void SecondaryAttack(InputAction.CallbackContext context)
     {
-
-        Debug.Log("WIP");
+        
     }
 }

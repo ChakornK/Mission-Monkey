@@ -7,7 +7,8 @@ public class UpdateHealthUI : MonoBehaviour
 {
     public GameObject healthUI;
     public TextMeshProUGUI healthText;
-    public float healthBarLerpSpeed = 10;
+    public float healthbarUpdateSpeed;
+    
     private Image playerHealthImage;
     private Color highHealthColour, midHealthColour, lowHealthColour;
 
@@ -21,29 +22,25 @@ public class UpdateHealthUI : MonoBehaviour
         playerHealthImage = healthUI.GetComponent<Image>();
     }
 
-    public void Update()
+    public void OnHealthModification()
     {
         int currentPlayerHealth = GetComponent<PlayerHealth>().GetHealth();
 
-        if (currentPlayerHealth >= 65)
+        switch (currentPlayerHealth)
         {
-            playerHealthImage.color = highHealthColour;
+            case >= 65:
+                playerHealthImage.color = highHealthColour;
+                break;
+            case >= 35 and <= 64:
+                playerHealthImage.color = midHealthColour;
+                break;
+            case >= 0 and <= 34:
+                playerHealthImage.color = lowHealthColour;
+                break;
         }
 
-        if (currentPlayerHealth is >= 35 and <= 64)
-        {
-            playerHealthImage.color = midHealthColour;
-        }
+        healthText.text = currentPlayerHealth + "/100";
 
-        if (currentPlayerHealth is >= 0 and <= 34)
-        {
-            playerHealthImage.color = lowHealthColour;
-        }
-
-        healthText.text = currentPlayerHealth.ToString() + "/100";
-
-        float currentFillAmount = playerHealthImage.fillAmount;
-        float fillAmount = Mathf.Lerp(currentFillAmount, currentPlayerHealth / 100f, Time.deltaTime * healthBarLerpSpeed);
-        playerHealthImage.fillAmount = fillAmount;
+        StartCoroutine(LemonUIUtils.SmoothlyUpdateFillUI(playerHealthImage, (float)currentPlayerHealth / 100, healthbarUpdateSpeed));
     }
 }

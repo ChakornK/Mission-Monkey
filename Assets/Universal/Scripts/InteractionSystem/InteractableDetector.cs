@@ -66,6 +66,8 @@ public class InteractableDetector : MonoBehaviour
 
     private void OnDestroy()
     {
-        playerInput.Disable();
+        playerInput.Dispose();
+        interactionUI = null;
+        interactText = null;
     }
 }

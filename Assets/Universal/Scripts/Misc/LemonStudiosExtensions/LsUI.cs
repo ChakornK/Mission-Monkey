@@ -33,17 +33,22 @@ namespace LemonStudios.UI
             return Mathf.Max(0, Mathf.Min(255, (float) input) / 255);
         }
         
-        public static IEnumerator SmoothlyUpdateFillUI(Image targetGraphic, float targetFillAmount)
+        public static IEnumerator SmoothlyUpdateFillUI(Image targetGraphic, float targetFillAmount, float duration = 1f)
         {
-            // Use Lerp to smoothly update the fill amount of an image over the course of a specified time 
-            while (Math.Abs(targetGraphic.fillAmount - targetFillAmount) > 0.0001f)
+            float startFill = targetGraphic.fillAmount;
+            float elapsed = 0f;
+
+            while (elapsed < duration)
             {
-                float currentFill = targetGraphic.fillAmount;
-                float loopFill = Mathf.Lerp(currentFill, targetFillAmount, Time.deltaTime * 0.2f);
-                targetGraphic.fillAmount = loopFill;
-                
-                yield return new WaitForEndOfFrame();
+                elapsed += Time.deltaTime;
+                float currentFill = Mathf.Lerp(startFill, targetFillAmount, elapsed / duration);
+                targetGraphic.fillAmount = currentFill;
+
+                yield return null;
             }
+
+            // Ensure the final fill amount is exactly the target fill amount
+            targetGraphic.fillAmount = targetFillAmount;
         }
    
         

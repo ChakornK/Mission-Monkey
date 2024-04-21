@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class SubtitlesUI : MonoBehaviour
 {
+    public bool enableDebugMessages;
+    
     private Image subtitlesUIImage;
     private TextMeshProUGUI subtitlesText;
     private bool subtitlesEnabled;
@@ -20,7 +22,7 @@ public class SubtitlesUI : MonoBehaviour
 
         // I HATE UNITY'S COLOR CLASS OH MY GOD
         StartCoroutine(LemonUIUtils.SmoothAlphaUpdate(subtitlesUIImage, 0, 0.00001f));
-        StartCoroutine(LemonUIUtils.SmoothAlphaUpdate(subtitlesUIImage, 0, 0.00001f));
+        StartCoroutine(LemonUIUtils.SmoothAlphaUpdate(subtitlesText, 0, 0.00001f));
     }
 
     public void ShowSubtitles(string initialDialogue, float showTime = 0.15f)
@@ -30,6 +32,10 @@ public class SubtitlesUI : MonoBehaviour
             StartCoroutine(LemonUIUtils.SmoothAlphaUpdate(subtitlesUIImage, 1, showTime));
             subtitlesText.text = formatDialogueText(initialDialogue);
             StartCoroutine(LemonUIUtils.SmoothAlphaUpdate(subtitlesText, 1, showTime));
+        }
+        else if(enableDebugMessages)
+        {
+            Debug.Log("Subtitles Not Enabled, ShowSubtitles will not run");
         }
     }
 
@@ -43,6 +49,11 @@ public class SubtitlesUI : MonoBehaviour
             subtitlesText.text = formatDialogueText(updatedSubtitles);
             StartCoroutine(LemonUIUtils.SmoothAlphaUpdate(subtitlesText, 1, splitUpdateTime));
         }
+        
+        else if(enableDebugMessages)
+        {
+            Debug.Log("Subtitles Not Enabled, UpdateSubtitles will not run");
+        }
     }
     
     public void HideSubtitles(float hideTime = 0.15f)
@@ -53,19 +64,17 @@ public class SubtitlesUI : MonoBehaviour
             StartCoroutine(LemonUIUtils.SmoothAlphaUpdate(subtitlesText, 0, hideTime));
             subtitlesText.text = string.Empty;
         }
+        else if(enableDebugMessages)
+        {
+            Debug.Log("Subtitles Not Enabled, HideSubtitles will not run");
+        }
     }
-
 
     public bool areSubtitlesHidden()
     {
         return subtitlesUIImage.color.a == 0;
     }
     
-    public bool getSubtitlesStatus()
-    {
-        return subtitlesEnabled;
-    }
-
     public void setSubtitlesStatus(bool state)
     {
         subtitlesEnabled = state;
